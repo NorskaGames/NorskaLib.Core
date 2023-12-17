@@ -1,0 +1,15 @@
+{
+  "name": "com.norska-lib.core",
+  "version": "1.0.0",
+  "displayName": "NorskaLib Core",
+  "description": "Extensions and syntax sugar for basic C# and Unity types.",
+  "unity": "2021.3",
+  "keywords": [
+    "extensions"
+  ],
+  "author": {
+    "name": "Norska Games",
+    "email": "norskagames@gmail.com"
+  },
+  "type": "tool"
+}
