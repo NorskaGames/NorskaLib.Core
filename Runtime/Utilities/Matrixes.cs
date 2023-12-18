@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-
-namespace NorskaLib
+namespace NorskaLib.Utilities
 {
-    public struct Matrix
+    public struct MatrixUtils
     {
         public static T[,] Flip<T>(T[,] original, bool flipRows = true, bool flipColumns = false)
         {

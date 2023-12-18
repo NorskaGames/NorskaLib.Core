@@ -7,8 +7,6 @@ namespace NorskaLib.Extensions
 {
     public abstract class ContainerScriptableObject<T> : ScriptableObject, IEnumerable<T> where T : class
     {
-        //private const string ModificationExceptionText = "ContainerScriptableObject<> internal collection is immutable by design!";
-
         [SerializeField] protected T[] collection;
 
         #region IEnumerable
@@ -17,7 +15,7 @@ namespace NorskaLib.Extensions
         {
             get => collection[index];
 
-            set => collection[index] = value; //throw new System.NotSupportedException(ModificationExceptionText);
+            set => collection[index] = value;
         }
 
         public IEnumerator<T> GetEnumerator()

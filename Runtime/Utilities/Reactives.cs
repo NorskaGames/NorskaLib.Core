@@ -1,37 +1,33 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace NorskaLib.Utilities
 {
     public class ReactiveReference<C> where C : class
     {
-        private C value;
+        private C reference;
+
+        public C Get() => reference;
 
         /// <summary>
         /// NOTE: Values are compared using '==' operator.
         /// </summary>
         /// <typeparam name="C"></typeparam>
-        public C Value
+        public void Set(C reference)
         {
-            get => value;
+            if (this.reference == reference)
+                return;
 
-            set
+            this.reference = reference;
+            if (reference == null && IsAssigned)
             {
-                if (this.value == value)
-                    return;
-
-                this.value = value;
-                if (value == null && IsAssigned)
-                {
-                    IsAssigned = false;
-                    onUnassigned?.Invoke();
-                }
-                else
-                {
-                    IsAssigned = true;
-                    onAssigned?.Invoke(value);
-                }
+                IsAssigned = false;
+                onUnassigned?.Invoke();
+            }
+            else
+            {
+                IsAssigned = true;
+                onAssigned?.Invoke(reference);
             }
         }
 
@@ -51,13 +47,13 @@ namespace NorskaLib.Utilities
 
         public ReactiveReference()
         {
-            value = null;
+            reference = null;
             IsAssigned = false;
         }
 
         public ReactiveReference(C initial)
         {
-            value = initial;
+            reference = initial;
             IsAssigned = initial != null;
         }
     }
@@ -66,22 +62,18 @@ namespace NorskaLib.Utilities
     {
         private V value;
 
+        public V Get() => value;
+
         /// <summary>
         /// NOTE: Values are compared using 'EqualityComparer<V>.Default.Equals()' method.
         /// </summary>
-        /// <typeparam name="C"></typeparam>
-        public V Value
+        public void Set(V value)
         {
-            get => value;
+            if (EqualityComparer<V>.Default.Equals(this.value, value))
+                return;
 
-            set
-            {
-                if (EqualityComparer<V>.Default.Equals(this.value, value))
-                    return;
-
-                this.value = value;
-                onChanged?.Invoke(value);
-            }
+            this.value = value;
+            onChanged?.Invoke(value);
         }
 
         public Action<V> onChanged;

@@ -4,7 +4,7 @@ namespace NorskaLib.Utilities
 {
     public sealed class ReadMeComponent : MonoBehaviour
     {
-        [TextArea]
+        [TextArea(4, 32)]
         [SerializeField] string text;
     }
 }

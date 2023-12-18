@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using System.Collections;
+﻿using NorskaLib.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using NorskaLib.Extensions;
 
 namespace NorskaLib.Utilities
 {

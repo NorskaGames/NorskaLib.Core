@@ -1,9 +1,6 @@
 ﻿using NorskaLib.Extensions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
-using UnityEngine.Windows;
 
 namespace NorskaLib.Utilities
 {
@@ -111,7 +108,7 @@ namespace NorskaLib.Utilities
         }
 
         /// <summary>
-        /// Отображает угол в диапазоне [-180; 180] в диапазон [0; 360]
+        /// Converts an angle from [-180; 180] to [0; 360] span
         /// </summary>
         public static float SignedTo360(float signedAngle)
         {
@@ -310,14 +307,7 @@ namespace NorskaLib.Utilities
             return b;
         }
 
-        /// <summary>
-        /// Возвращает примерную длину квадратичной кривой Безье.
-        /// </summary>
-        /// <param name="startPos"></param>
-        /// <param name="arcPos"></param>
-        /// <param name="endPos"></param>
-        /// <param name="divCount"> Кол-во отрезков, на которые разбивается кривая. </param>
-        /// <returns></returns>
+        /// <returns> Approximate length of the Bezier curve. </returns>
         public static float QuadCurveLengthSlow(Vector3 startPos, Vector3 arcPos, Vector3 endPos, int divCount)
         {
             var length = 0f;
@@ -333,25 +323,14 @@ namespace NorskaLib.Utilities
             return length;
         }
 
-        /// <summary>
-        /// Возвращает точку, на которую смотрит точка на квадратичной кривой
-        /// </summary>
-        /// <param name="startPos"> Начальная точка </param>
-        /// <param name="arcPos"> Опорная точка, задающая форму </param>
-        /// <param name="endPos"> Конечная точка </param>
-        /// <param name="t"> Параметр, определяющий долю от пути по кривой, 
-        /// на которой находится точка; лежит в пределах от 0 до 1 </param>
+
+        /// <returns> A look-point from a given curve-point. </returns>
         public static Vector3 LookPositionOnQuad(Vector3 startPos, Vector3 arcPos, Vector3 endPos, float t)
         {
             return arcPos + (endPos - arcPos) * t;
         }
 
         // By DylanW https://answers.unity.com/questions/556480/rotate-the-shortest-way.html
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
         /// <returns> An angle in +180...-180 range, where positive result indicates that a rotation 
         /// from 'from' to 'to' will be clockwise and negative result indicates the opposite. </returns>
         public static float ShortestRotationAngle(float from, float to)

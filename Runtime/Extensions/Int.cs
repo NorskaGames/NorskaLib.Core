@@ -1,5 +1,3 @@
-using NorskaLib.Utilities;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace NorskaLib.Extensions
