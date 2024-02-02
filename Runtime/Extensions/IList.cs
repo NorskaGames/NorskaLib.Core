@@ -61,10 +61,28 @@ namespace NorskaLib.Extensions
         }
 
         /// <returns> '-1' if no match found. </returns>
-        public static int IndexOf<T>(this List<T> list, Func<T, bool> query)
+        public static int IndexOf<T>(this IList<T> list, Func<T, bool> query)
         {
             for (int i = 0; i < list.Count; i++)
                 if (query(list[i]))
+                    return i;
+
+            return -1;
+        }
+        /// <returns> '-1' if no match found. </returns>
+        public static int IndexOf<T>(this IList<T> list, int id) where T : IIntegerIdProvider
+        {
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].Id == id)
+                    return i;
+
+            return -1;
+        }
+        /// <returns> '-1' if no match found. </returns>
+        public static int IndexOf<T>(this IList<T> list, string id) where T : IStringIdProvider
+        {
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].Id == id)
                     return i;
 
             return -1;

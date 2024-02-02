@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - More Extensions and Utilities
 
+## [1.0.1] - 02-02-2023
+### Refactored
+- Minor extensions and utilities
+
 ## [1.0.0] - 17-12-2023
 ### Added
 - Text utils

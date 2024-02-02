@@ -49,30 +49,43 @@ namespace NorskaLib.Utilities
             return (maskA & maskB) != 0;
         }
 
+        public static void ForEachSetFlag(uint mask, Action<uint> action)
+        {
+            for (int i = 0; i < 32; i++)
+                if (HasFlag((int)mask, i))
+                    action((uint)(1 << i));
+        }
+        public static void ForEachClearFlag(uint mask, Action<uint> action)
+        {
+            for (int i = 0; i < 32; i++)
+                if (!HasFlag((int)mask, i))
+                    action((uint)(1 << i));
+        }
+
         public static void ForEachSetFlag(int mask, Action<int> action)
         {
             for (int i = 0; i < 32; i++)
                 if (HasFlag(mask, i))
-                    action(i);
+                    action((int)(1 << i));
         }
         public static void ForEachClearFlag(int mask, Action<int> action)
         {
             for (int i = 0; i < 32; i++)
                 if (!HasFlag(mask, i))
-                    action(i);
+                    action((int)(1 << i));
         }
 
         public static void ForEachSetFlag(byte mask, Action<byte> action)
         {
             for (byte i = 0; i < 8; i++)
                 if (HasFlag(mask, i))
-                    action(i);
+                    action((byte)(1 << i));
         }
         public static void ForEachClearFlag(byte mask, Action<byte> action)
         {
             for (byte i = 0; i < 8; i++)
                 if (!HasFlag(mask, i))
-                    action(i);
+                    action((byte)(1 << i));
         }
     }
 }

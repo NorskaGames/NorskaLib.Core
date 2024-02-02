@@ -19,7 +19,7 @@ namespace NorskaLib.Utilities
                 return;
 
             this.reference = reference;
-            if (reference == null && IsAssigned)
+            if (reference == null)
             {
                 IsAssigned = false;
                 onUnassigned?.Invoke();
@@ -30,6 +30,8 @@ namespace NorskaLib.Utilities
                 onAssigned?.Invoke(reference);
             }
         }
+
+        public void Clear() => Set(null);
 
         /// <summary>
         /// Invoked when Value is changed to not null object reference.
