@@ -60,6 +60,28 @@ namespace NorskaLib.Extensions
             return list[index];
         }
 
+        public static bool Contains<T>(this IList<T> list, T element, out int index) where T : class
+        {
+            for (int i = 0; i < list.Count; i++)
+                if (element == list[i])
+                {
+                    index = i;
+                    return true;
+                }
+
+            index = -1;
+            return false;
+        }
+
+        /// <returns> '-1' if no match found. </returns>
+        public static int IndexOf<T>(this IList<T> list, T element) where T : class
+        {
+            for (int i = 0; i < list.Count; i++)
+                if (element == list[i])
+                    return i;
+
+            return -1;
+        }
         /// <returns> '-1' if no match found. </returns>
         public static int IndexOf<T>(this IList<T> list, Func<T, bool> query)
         {
