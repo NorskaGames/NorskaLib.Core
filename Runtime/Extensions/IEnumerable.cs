@@ -24,6 +24,19 @@ namespace NorskaLib.Extensions
             return queue;
         }
 
+        public static int ToArrayBuffer<T>(this IEnumerable<T> collection, T[] buffer)
+        {
+            var lastBufferIndex = 0;
+            foreach (var item in collection)
+            {
+                buffer[lastBufferIndex++] = item;
+                if (lastBufferIndex >= buffer.Length)
+                    break;
+            }
+
+            return lastBufferIndex;
+        }
+
         public static bool TryGet<T>(this IEnumerable<T> collection, Func<T, bool> predicate, out T result)
         {
             foreach (var item in collection)

@@ -21,6 +21,11 @@ namespace NorskaLib.Extensions
             return (value >= min) && (value <= max);
         }
 
+        public static bool IsBetween(this float value, Vector2 span)
+        {
+            return (value >= span.x) && (value <= span.y);
+        }
+
         public static bool IsBetween(this float value, float min, float max, bool exclusiveMin = false, bool exclusiveMax = false)
         {
             static bool CompareToMin(float value, float min, bool exclusive)
