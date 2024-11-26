@@ -21,5 +21,18 @@ namespace NorskaLib.Extensions
             var localMaxPosition = (Vector2.one - instance.pivot) * instance.rect.size;
             return Vector2Utils.InverseLerp(localMinPosition, localMaxPosition, localPosition);
         }
+
+        public static void Mimic(this RectTransform thisTransform, RectTransform sourceTransform)
+        {
+            thisTransform.anchoredPosition = sourceTransform.anchoredPosition;
+            thisTransform.anchorMax = sourceTransform.anchorMax;
+            thisTransform.anchorMin = sourceTransform.anchorMin;
+            thisTransform.pivot = sourceTransform.pivot;
+            thisTransform.sizeDelta = sourceTransform.sizeDelta;
+
+            thisTransform.localPosition = sourceTransform.localPosition;
+            thisTransform.localRotation = sourceTransform.localRotation;
+            thisTransform.localScale = sourceTransform.localScale;
+        }
     }
 }
