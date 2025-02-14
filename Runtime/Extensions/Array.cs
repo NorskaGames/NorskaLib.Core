@@ -20,5 +20,32 @@ namespace NorskaLib.Extensions
         {
             return MathUtils.GetRangeArray(0, array.Length - 1);
         }
+
+        public static int IndexOf(this short[] array, short element)
+        {
+            for (int i = 0; i < array.Length; i++)
+                if (element == array[i])
+                    return i;
+
+            return -1;
+        }
+
+        public static int IndexOf(this int[] array, int element)
+        {
+            for (int i = 0; i < array.Length; i++)
+                if (element == array[i])
+                    return i;
+
+            return -1;
+        }
+
+        public static int IndexOf(this byte[] array, byte element)
+        {
+            for (int i = 0; i < array.Length; i++)
+                if (element == array[i])
+                    return i;
+
+            return -1;
+        }
     }
 }
