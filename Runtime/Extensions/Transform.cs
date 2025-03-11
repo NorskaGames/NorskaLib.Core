@@ -17,6 +17,12 @@ namespace NorskaLib.Extensions
             }
         }
 
+        public static void CopyValues(this Transform transform, Transform other)
+        {
+            transform.SetPositionAndRotation(other.transform.position, other.transform.rotation);
+            transform.localScale = other.localScale;
+        }
+
         public static void SetPositionAndRotation(this Transform transform, Transform other)
         {
             transform.SetPositionAndRotation(other.transform.position, other.transform.rotation);
