@@ -59,6 +59,11 @@ namespace NorskaLib.Extensions
             var index = UnityEngine.Random.Range(0, list.Count);
             return list[index];
         }
+        public static T Random<T>(this IList<T> list, out int index)
+        {
+            index = UnityEngine.Random.Range(0, list.Count);
+            return list[index];
+        }
         public static T Random<T>(this IList<T> list, System.Random randomizer)
         {
             var index = randomizer.Next(0, list.Count);
