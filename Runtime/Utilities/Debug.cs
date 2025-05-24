@@ -37,6 +37,42 @@ namespace NorskaLib.Utilities
                 Debug.DrawLine(frstVertex, prevVertex, color, duration);
         }
 
+        public static void DrawBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color, float duration = 0)
+        {
+            // Calculate the 8 corner points of the box
+            Vector3[] corners = new Vector3[8];
+
+            // Bottom vertices
+            corners[0] = origin + orientation * new Vector3(-halfExtents.x, -halfExtents.y, -halfExtents.z);
+            corners[1] = origin + orientation * new Vector3(halfExtents.x, -halfExtents.y, -halfExtents.z);
+            corners[2] = origin + orientation * new Vector3(halfExtents.x, -halfExtents.y, halfExtents.z);
+            corners[3] = origin + orientation * new Vector3(-halfExtents.x, -halfExtents.y, halfExtents.z);
+
+            // Top vertices
+            corners[4] = origin + orientation * new Vector3(-halfExtents.x, halfExtents.y, -halfExtents.z);
+            corners[5] = origin + orientation * new Vector3(halfExtents.x, halfExtents.y, -halfExtents.z);
+            corners[6] = origin + orientation * new Vector3(halfExtents.x, halfExtents.y, halfExtents.z);
+            corners[7] = origin + orientation * new Vector3(-halfExtents.x, halfExtents.y, halfExtents.z);
+
+            // Draw bottom face
+            Debug.DrawLine(corners[0], corners[1], color, duration);
+            Debug.DrawLine(corners[1], corners[2], color, duration);
+            Debug.DrawLine(corners[2], corners[3], color, duration);
+            Debug.DrawLine(corners[3], corners[0], color, duration);
+
+            // Draw top face
+            Debug.DrawLine(corners[4], corners[5], color, duration);
+            Debug.DrawLine(corners[5], corners[6], color, duration);
+            Debug.DrawLine(corners[6], corners[7], color, duration);
+            Debug.DrawLine(corners[7], corners[4], color, duration);
+
+            // Draw vertical edges
+            Debug.DrawLine(corners[0], corners[4], color, duration);
+            Debug.DrawLine(corners[1], corners[5], color, duration);
+            Debug.DrawLine(corners[2], corners[6], color, duration);
+            Debug.DrawLine(corners[3], corners[7], color, duration);
+        }
+
         public static void DrawCircle(Vector3 origin, float radius, Color color, float duration = 0, int subdivision = 8)
         {
             IEnumerable<Vector3> GetVerticesLazy()
