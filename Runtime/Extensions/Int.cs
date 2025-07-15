@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace NorskaLib.Extensions
@@ -81,6 +82,42 @@ namespace NorskaLib.Extensions
         public static bool IsGreaterOrEqual(this int value, int a, int b)
         {
             return value >= a && value >= b;
+        }
+
+        public static bool GetBit(this short mask, int index)
+        {
+            if (index < 0 || index > 15)
+                throw new ArgumentOutOfRangeException(nameof(index), "bit index must be between 0 and 15.");
+
+            return ((mask >> index) & 1) != 0;
+        }
+
+        public static bool GetBit(this int mask, int index)
+        {
+            if (index < 0 || index > 31)
+                throw new ArgumentOutOfRangeException(nameof(index), "bit index must be between 0 and 31.");
+
+            return ((mask >> index) & 1) != 0;
+        }
+
+        public static short SetBit(this short mask, int index, bool set)
+        {
+            if (index < 0 || index > 15)
+                throw new ArgumentOutOfRangeException(nameof(index), "bitIndex must be between 0 and 15.");
+
+            return set 
+                ? (short)(mask | (short)(1 << index)) 
+                : (short)(mask & ~(1 << index));
+        }
+
+        public static int SetBit(this int mask, int index, bool set)
+        {
+            if (index < 0 || index > 15)
+                throw new ArgumentOutOfRangeException(nameof(index), "bitIndex must be between 0 and 15.");
+
+            return set
+                ? (mask | (1 << index))
+                : (mask & ~(1 << index));
         }
     }
 }
