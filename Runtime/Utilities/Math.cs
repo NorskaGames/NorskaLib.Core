@@ -14,8 +14,15 @@ namespace NorskaLib.Utilities
         {
             return Mathf.Min(Mathf.Min(a, b), c);
         }
-
         public static double Min(double a, double b)
+        {
+            return a <= b ? a : b;
+        }
+        public static uint Min(uint a, uint b)
+        {
+            return a <= b ? a : b;
+        }
+        public static ulong Min(ulong a, ulong b)
         {
             return a <= b ? a : b;
         }
@@ -28,8 +35,15 @@ namespace NorskaLib.Utilities
         {
             return Mathf.Max(Mathf.Max(a, b), c);
         }
-
         public static double Max(double a, double b)
+        {
+            return a >= b ? a : b;
+        }
+        public static uint Max(uint a, uint b)
+        {
+            return a >= b ? a : b;
+        }
+        public static ulong Max(ulong a, ulong b)
         {
             return a >= b ? a : b;
         }
