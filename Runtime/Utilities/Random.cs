@@ -155,5 +155,31 @@ namespace NorskaLib.Utilities
 
             return default;
         }
+
+        public static T Element<T>(IList<T> collection) where T : IRandomizable
+        {
+            var W = 0f;
+            for (int i = 0; i < collection.Count; i++)
+            {
+                T randomizable = collection[i];
+                W += randomizable.Weight;
+            }
+
+            var roll = Random.Range(0, W);
+
+            var min = 0f;
+            for (int i = 0; i < collection.Count; i++)
+            {
+                T randomizable = collection[i];
+                var weight = randomizable.Weight;
+                var max = min + weight;
+                if (roll.IsBetween(min, max, false, true) && !weight.ApproximatelyZero())
+                    return randomizable;
+
+                min = max;
+            }
+
+            return default;
+        }
     }
 }
