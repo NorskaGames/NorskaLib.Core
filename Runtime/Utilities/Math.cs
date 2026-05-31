@@ -75,6 +75,14 @@ namespace NorskaLib.Utilities
                     ? min
                     : value;
         }
+        public static short Clamp(short value, short min, short max)
+        {
+            return value >= max
+                ? max
+                : value <= min
+                    ? min
+                    : value;
+        }
 
         public static List<int> GetRangeList(int min, int max)
         {
